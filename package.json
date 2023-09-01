@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "engines": {
-    "node": "^16"
+    "node": "^18"
   },
   "scripts": {
     "start": "yarn install && yarn add vite && @vitejs/plugin-react && yarn run && yarn preview",
