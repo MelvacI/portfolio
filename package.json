@@ -6,8 +6,8 @@
   "engines" : {
     "node" : "^16"
   },
-   "scripts": {
-    "start" : "yarn install && yarn build",
+  "scripts": {
+    "start" : "yarn install && yarn add vite && yarn build",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
