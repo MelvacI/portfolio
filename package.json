@@ -7,7 +7,7 @@
     "node" : "^16"
   },
   "scripts": {
-    "start" : "yarn install && yarn add vite && yarn run && yarn preview",
+    "start" : "npm install -g  && npm run build && npm run preview",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
