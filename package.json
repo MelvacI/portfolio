@@ -7,7 +7,7 @@
     "node" : "^16"
   },
   "scripts": {
-    "start" : "npm install -g  && npm run build && npm run preview",
+    "start" : "npm install -g  && npm add vite && npm i @vitejs/plugin-react && npm run build && npm run preview",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
