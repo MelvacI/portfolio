@@ -1,0 +1,136 @@
+@import "index.scss";
+@import "glitchText.scss";
+
+html,
+body {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    background-color: #242424;
+
+    &::-webkit-scrollbar {
+        width: 0.5rem;
+    }
+
+    min-height: 100vh;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body,
+#app,
+#root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#loader-container,
+#maint-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    h1 {
+        width: 100%;
+    }
+}
+
+
+.highlight {
+    position: relative;
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: #50dfdb;
+    transform-origin: left;
+    animation: animate 2s linear;
+}
+
+@keyframes animate {
+    0% {
+        transform: scaleX(0);
+    }
+
+    50% {
+        transform: scaleX(1);
+    }
+}
+
+.smooth-transition {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Ajoutez ces styles à votre fichier CSS ou à votre feuille de style */
+.cursor {
+    color: white;
+    /* Couleur blanche du curseur */
+    animation: blink 0.7s infinite;
+    /* Animation de clignotement */
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+        /* Opacité à 1 au début et à la fin */
+    }
+
+    50% {
+        opacity: 0;
+        /* Opacité à 0 au milieu (pour le clignotement) */
+    }
+}
+
+
+/* Transition de fondu en entrée */
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+}
+
+/* Transition de fondu en sortie */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+.wrap {
+    animation: fadein 1s forwards;
+}
+
+.unwrap {
+    animation: fadeout 0.5s forwards;
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+@keyframes fadeout {
+    0% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: 0
+    }
+}
