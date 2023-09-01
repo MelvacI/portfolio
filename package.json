@@ -5,7 +5,7 @@
   "type": "module",
   "main" : "myapp.js",
   "engines" : {
-    "node" : "^10"
+    "node" : "^16"
   },
    "scripts": {
     "start" : "node myapp.js",
