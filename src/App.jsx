@@ -29,7 +29,6 @@ function App() {
     }, 2000);
   }, []);
 
-  console.log(loading)
 
   return (
     <div id="app">
