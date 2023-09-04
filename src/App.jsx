@@ -3,31 +3,30 @@ import Loader from './Loader';
 import MainContent from './MainContent';
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [glitch, setGlitch] = useState(false);
   const [welcome, setWelcome] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setGlitch(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setGlitch(true);
 
-  //     setTimeout(() => {
-  //       setGlitch(false);
-  //       setWelcome(true);
-  //       setTimeout(() => {
-  //         setFadeOut(true);
-  //         setTimeout(() => {
-  //           setLoading(false);
-  //         }, 1000);
-  //       }, 2000);
-  //     }
-  //       , 1000);
-  //   }, 2000);
-  // }, []);
+      setTimeout(() => {
+        setGlitch(false);
+        setWelcome(true);
+        setTimeout(() => {
+          setFadeOut(true);
+          setTimeout(() => {
+            setLoading(false);
+          }, 1000);
+        }, 2000);
+      }
+        , 1000);
+    }, 2000);
+  }, []);
 
 
   return (
