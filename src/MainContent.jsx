@@ -1,8 +1,13 @@
 import { useEffect, useState, useRef } from 'react';
+import CursorFollower from './CursorFollower';
 
 export default function MainContent() {
     const [selectedMenuItem, setSelectedMenuItem] = useState('about');
     const sections = useRef([]);
+
+   
+
+    
 
     const paddingBlockPixels = 160; // La valeur du padding-block en pixels (5rem * 16px)
 
@@ -41,8 +46,68 @@ export default function MainContent() {
         skills: 'Compétences'
     }
 
+    const getItemsContent = (item) => {
+        switch (item) {
+            case 'about':
+                return getAboutContent();
+                break;
+            case 'xp':
+                // do something
+                break;
+            case 'project':
+                // do something
+                break;
+            case 'skills':
+                // do something
+                break;
+            default:
+                // do something
+                break;
+        }
+
+    }
+
+    const getAboutContent = () => {
+
+        return (
+
+            <div className="intro">
+                <p className="greeting">Salut ! Moi c'est <span className="marked-text" >Florian</span>, j'ai <span className="age">{getMyAge()}</span> ans, depuis toujours je suis passionné d'informatique.</p>
+                <p>Après plusieurs années à enseigner ma seconde passion qu'est l'équitation, j'ai décidé de me former au développement en 2022 afin de vivre pleinement ces deux passions.</p>
+                <p>J'ai rapidement eu l'occasion de rejoindre un <span className="marked-text" >collectif de freelance</span> qui m'a fait confiance suite à mon stage de fin d'étude, j'ai pu alors travailler sur des projets engagés socialement et écologiquement.</p>
+                <p>Voici un bref résumé des technologies sur lesquelles j'ai pu travailler</p>
+
+                <ul className="tech-list">
+                    <li>Javascript</li>
+                    <li>React</li>
+                    <li>PHP</li>
+                    <li>Symfony</li>
+                    <li>Api Platform</li>
+                    <li>MySQL</li>
+                </ul>
+
+            </div>
+        )
+
+    }
+
+    const getMyAge = () => {
+        const today = new Date();
+        const birthDate = new Date(1998, 1, 15);
+
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const m = today.getMonth() - birthDate.getMonth();
+
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+
+        return age;
+    }
+
     return (
         <div id="main-content" className="wrap">
+            <CursorFollower />
             <section id="description">
                 <div id="presentation">
                     <h1>Florian Eeckhout</h1>
@@ -54,7 +119,7 @@ export default function MainContent() {
                         {['about', 'xp', 'project', 'skills'].map((menuItem) => (
                             <li key={menuItem} >
                                 <a className={selectedMenuItem === menuItem ? 'selected' : ''} href={`#${menuItem}`} onClick={(e) => triggerSelection(e, menuItem)}>
-                                    {itemsLabel[menuItem]}                                    
+                                    {itemsLabel[menuItem]}
                                 </a>
                             </li>
                         ))}
@@ -66,12 +131,10 @@ export default function MainContent() {
             <section id="resume">
                 {['about', 'xp', 'project', 'skills'].map((sectionId, index) => (
                     <article key={sectionId} id={sectionId} ref={(el) => (sections.current[index] = el)}>
-                        <h1>
-                        {itemsLabel[sectionId]}                                    
-
-                        </h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, mollitia id laborum tenetur earum inventore ab repellat quos sed atque ducimus aut corrupti, nihil fugiat reiciendis exercitationem dolor, obcaecati voluptatum?</p>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium accusantium possimus consequatur unde atque cumque, quos sed repellat fugit in excepturi ipsa esse suscipit odit eum libero rerum cupiditate ullam dolorum minus, nesciunt eaque? Quasi dicta explicabo officiis distinctio vero nemo! Rerum quae architecto nostrum soluta magni, quidem veniam? Harum eaque placeat impedit eveniet dolore quae, est incidunt laboriosam quod voluptatum eligendi accusantium expedita facere reiciendis rerum voluptatibus repudiandae. Obcaecati excepturi reiciendis eaque repellendus, assumenda numquam quo eius dolores aut nobis sunt sint at officiis sequi nam doloribus, dolor eos incidunt quibusdam recusandae velit quos voluptates veniam. Cumque dignissimos architecto voluptas provident incidunt nostrum, officia magnam velit consectetur eos consequuntur maxime nesciunt, reprehenderit quis mollitia iste libero perspiciatis esse consequatur! Repellat magni earum dolorem quas quisquam sit quibusdam minima, ullam sed est laborum ipsa eius omnis exercitationem consequatur, doloribus quaerat corrupti? Eligendi, dolore quasi voluptates voluptatem animi magnam, aut sunt soluta, nihil obcaecati totam. Id ad exercitationem quos recusandae porro? Voluptate eius quam expedita, quisquam illo repellat alias error quasi qui labore voluptatibus, eaque sed laboriosam dolorum hic dolorem, accusantium itaque sequi! Impedit, quis, possimus nesciunt consequuntur alias quas laborum quae inventore eaque ullam at magnam. Accusamus dolorum nobis rerum esse officia quod nihil adipisci, natus fuga necessitatibus. Porro eius asperiores minus ratione magni ducimus debitis, vel quaerat saepe neque? Delectus, maiores soluta. Vel molestias fugiat enim. Sapiente optio magnam quod quasi alias, tempora ad hic laborum maiores dicta ipsa quas. Repellat rem quae fuga! Reprehenderit mollitia sequi molestias laboriosam?</p>
+                        <h1>{itemsLabel[sectionId]}</h1>
+                        <div className="content">
+                            {getItemsContent(sectionId)}
+                        </div>
                     </article>
                 ))}
             </section>
