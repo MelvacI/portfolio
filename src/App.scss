@@ -58,17 +58,18 @@ body {
         @media screen and (max-width: 768px) {
             display: none;
         }
-
+    
         position: fixed;
-
+        width: 20px; /* Ajustez la largeur et la hauteur selon vos besoins */
+        height: 20px; /* Ajustez la largeur et la hauteur selon vos besoins */
+    
         -webkit-box-shadow: 0px 0px 49px 50px rgba(119, 119, 119, 0.92);
-        box-shadow: 0px 0px 200px 200px   rgba(119, 119, 119, 0.2);
+        box-shadow: 0px 0px 200px 200px rgba(119, 119, 119, 0.2);
+        background-color: rgba(119, 119, 119, 0.2);
         pointer-events: none;
-        border-radius: 50%;
+        border-radius: 50%; /* Rend l'élément entier (y compris la shadow) rond */
         transform: translate(-50%, -50%);
         z-index: 9999;
-        /* Ajout de la propriété pour des bords plus lisses */
-        /* Ajout de l'ombre avec des valeurs cohérentes */
     }
 
     @media screen and (max-width: 768px) {
