@@ -75,9 +75,8 @@ body {
         z-index: 9999;
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 768px){
         flex-direction: column;
-        padding: 2rem 2rem;
         justify-content: start;
     }
 
@@ -88,6 +87,16 @@ body {
 
     min-height: 100vh;
     padding: 0rem 18rem;
+    @media screen and (max-width: 1440px) {
+        padding: 0rem 10rem;
+        
+    
+        
+    }
+    @media screen and (max-width: 1024px) {
+        padding: 0rem 2rem;
+        
+    }
 
     section {
         width: 50%;
@@ -102,11 +111,12 @@ body {
             text-align: start;
 
             // sticky on desktop
-            @media screen and (min-width: 768px) {
-                position: sticky;
+            position: sticky;
                 top: 0;
                 align-self: flex-start;
                 height: fit-content;
+            @media screen and (max-width : 768px) {
+                position: relative;
             }
 
             h1 {
@@ -375,7 +385,7 @@ body {
                         font-size: 0.8rem;
                         font-weight: 600;
                         padding: 0.5rem 1rem;
-                        margin : 0.5rem;
+                        margin: 0.5rem;
 
                         &:hover {
                             background-color: #242424;
