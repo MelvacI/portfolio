@@ -58,16 +58,19 @@ body {
         @media screen and (max-width: 768px) {
             display: none;
         }
-    
+
         position: fixed;
-        width: 10px; /* Ajustez la largeur et la hauteur selon vos besoins */
-        height: 10px; /* Ajustez la largeur et la hauteur selon vos besoins */
-    
+        width: 10px;
+        /* Ajustez la largeur et la hauteur selon vos besoins */
+        height: 10px;
+        /* Ajustez la largeur et la hauteur selon vos besoins */
+
         -webkit-box-shadow: 0px 0px 200px 200px rgba(119, 119, 119, 0.2);
-        box-shadow: 0px 0px 300px 200px rgba(119, 119, 119, 0.2);   
+        box-shadow: 0px 0px 300px 200px rgba(119, 119, 119, 0.2);
         background-color: rgba(119, 119, 119, 0.15);
         pointer-events: none;
-        border-radius: 50%; /* Rend l'élément entier (y compris la shadow) rond */
+        border-radius: 50%;
+        /* Rend l'élément entier (y compris la shadow) rond */
         transform: translate(-50%, -50%);
         z-index: 9999;
     }
@@ -195,68 +198,171 @@ body {
                     }
                 }
             }
-            a.marked-text{
+
+            a.marked-text {
                 color: #50dfdb;
                 font-weight: bold;
                 cursor: pointer;
+            }                .projects{
+
+
+                .projects-list{
+
+                    // <div className="project-item">
+                    //         <h4 className="project-title">{project.name}</h4>
+                    //         <p className="project-description">{project.description}</p>
+                    //         <p className="project-techs">{project.techs.map((tech) => {
+                    //             return <span key={project.name + tech} className="tech">{tech}</span>
+                    //         })}</p>
+                    //         <p className="project-details">{project.details}</p>
+                        // </div>
+
+                    display: flex;
+                    flex-direction: column;
+
+                    .project-item{
+                        margin: 3rem 0;
+                        padding: 1rem;
+                        border: 1px solid transparent;
+
+                        &:hover {
+                            border-radius: 0.5rem;
+                            background: #333333;
+                        }
+
+                        .project-header {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+
+                            .project-title {
+                                font-size: 1.5rem;
+                                font-weight: 600;
+                                margin: 1rem 0;
+                            }
+
+                            .project-date {
+                                font-size: 1rem;
+                                font-weight: 600;
+                                margin: 1rem 0;
+                            }
+                        }
+
+                        .project-description {
+                            font-size: 0.8rem;
+                            font-weight: 400;
+                            margin: 1rem 0;
+                        }
+
+                        .project-details{
+                            font-size: 1rem;
+                            font-weight: 400;
+                            margin: 1rem 0;
+                        }
+
+                        .project-techs{
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: space-evenly;
+                            align-items: center;
+                            .tech{
+                                border-radius: 0.5rem;
+                                background-color: #50dfdb;
+                                color: #242424;
+                                font-size: 0.8rem;
+                                font-weight: 600;
+                                padding: 0.5rem 1rem;
+                                &:hover{
+                                    background-color: #242424;
+                                    color: #50dfdb;
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
-            .xp-item{
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                margin: 2rem 0;
-                padding: 2rem 0;
-                border-top: 1px solid #50dfdb;
-                border-bottom: 1px solid #50dfdb;
 
-                .xp-title{
-                    font-size: 1.5rem;
-                    font-weight: 600;
-                    color: #50dfdb;
-                    margin-bottom: 1rem;
+            .xp-item {
+                // <div className="xp-item">
+                //             <h3 className="xp-title">{xpItem.title}</h3>
+                //             <h4 className="xp-company">{xpItem.company}</h4>
+                //             <p className="xp-date">{xpItem.date}</p>
+                //             <p className="xp-description">{xpItem.description}</p>
+                //             <p className="xp-details">{xpItem.details}</p>
+                // <p className="xp-techs">{xpItem.techs.map((tech) => {
+                //     return <span key={xpItem.title + tech} className="tech">{tech}</span>
+                // })}</p>
+                //         </div>
+                margin: 3rem 0;
+                padding: 1rem;
+                border: 1px solid transparent;
+
+                &:hover {
+                    border-radius: 0.5rem;
+                    background: #333333;
                 }
 
-                .xp-subtitle{
-                    font-size: 1rem;
-                    font-weight: 600;
-                    color: #50dfdb;
-                    margin-bottom: 1rem;
+                .xp-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .xp-title {
+                        font-size: 1.5rem;
+                        font-weight: 600;
+                        margin: 1rem 0;
+                    }
+
+                    .xp-date {
+                        font-size: 1rem;
+                        font-weight: 600;
+                        margin: 1rem 0;
+                    }
                 }
 
-                .xp-description{
+                .xp-company {
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    margin: 1rem 0;
+                }
+
+                .xp-description {
+                    font-size: 0.8rem;
+                    font-weight: 400;
+                    margin: 1rem 0;
+                }
+
+                .xp-details{
                     font-size: 1rem;
                     font-weight: 400;
-                    color: #50dfdb;
-                    margin-bottom: 1rem;
+                    margin: 1rem 0;
                 }
 
                 .xp-techs{
                     display: flex;
                     flex-wrap: wrap;
-                    justify-content: center;
+                    justify-content: space-evenly;
                     align-items: center;
-                    list-style: none;
-                    margin: 0;
-                    padding: 0;
-
-                    li {
-                        margin: 1rem;
-                        padding: 0.5rem 1rem;
+                    .tech{
                         border-radius: 0.5rem;
                         background-color: #50dfdb;
                         color: #242424;
-                        font-size: 1rem;
+                        font-size: 0.8rem;
                         font-weight: 600;
-                        transition: all 0.3s ease-in-out;
-
-                        &:hover {
+                        padding: 0.5rem 1rem;
+                        &:hover{
                             background-color: #242424;
                             color: #50dfdb;
                         }
                     }
                 }
+
+
+
+
+
+
             }
 
         }
