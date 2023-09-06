@@ -50,10 +50,8 @@ export default function MainContent() {
         switch (item) {
             case 'about':
                 return getAboutContent();
-                break;
             case 'xp':
-                // do something
-                break;
+                return getXPContent();
             case 'project':
                 // do something
                 break;
@@ -74,8 +72,8 @@ export default function MainContent() {
             <div className="intro">
                 <p className="greeting">Salut ! Moi c'est <span className="marked-text" >Florian</span>, j'ai <span className="age">{getMyAge()}</span> ans, depuis toujours je suis passionné d'informatique.</p>
                 <p>Après plusieurs années à enseigner ma seconde passion qu'est l'équitation, j'ai décidé de me former au développement en 2022 afin de vivre pleinement ces deux passions.</p>
-                <p>J'ai rapidement eu l'occasion de rejoindre un <span className="marked-text" >collectif de freelance</span> qui m'a fait confiance suite à mon stage de fin d'étude, j'ai pu alors travailler sur des projets engagés socialement et écologiquement.</p>
-                <p>Voici un bref résumé des technologies sur lesquelles j'ai pu travailler</p>
+                <p>J'ai rapidement eu l'occasion de rejoindre un <span className="marked-text" >collectif de freelance</span> qui m'a fait confiance suite à mon stage de fin d'étude. J'ai pu alors travailler sur des projets engagés socialement et écologiquement.</p>
+                <p>Voici un bref résumé des technologies sur lesquelles j'ai pu travailler.</p>
 
                 <ul className="tech-list">
                     <li>Javascript</li>
@@ -84,11 +82,39 @@ export default function MainContent() {
                     <li>Symfony</li>
                     <li>Api Platform</li>
                     <li>MySQL</li>
+                    
                 </ul>
-
             </div>
         )
+    }
 
+    const xp = [
+        {
+            title : 'Développeur Web',
+            company : 'Freelance',
+            date : '2021 - Aujourd\'hui',
+            description : 'Développement d\'applications web en freelance',
+            details : <p>Développement d'applications avec Framework PHP Symfony et ReactJS, au sein du collectif de Freelance "MetaStrat" j'ai pu travailler sur des projets pour des clients du collectif tels que <a href="https://www.openclimat.com" className="marked-text" target='_blank'>OpenClimat</a>, <span  className="marked-text" >Ti3rs</span> et des projets interne comme <a className="marked-text" href="https://labonnepub.com" target='_blank' >LabonnePub</a></p>
+        }
+    ]
+
+    const getXPContent = () => {
+        return (
+            <div className="experiences">
+                {
+                    xp.map((xpItem) => (
+                        <div className="xp-item">
+                            <h3>{xpItem.title}</h3>
+                            <h4>{xpItem.company}</h4>
+                            <p>{xpItem.date}</p>
+                            <p>{xpItem.description}</p>
+                            <p>{xpItem.details}</p>
+                        </div>
+                    ))
+                }
+            </div>
+        )
+        
     }
 
     const getMyAge = () => {
