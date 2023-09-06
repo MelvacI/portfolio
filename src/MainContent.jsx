@@ -1,12 +1,49 @@
 import { useEffect, useState, useRef } from 'react';
 import CursorFollower from './CursorFollower';
+import ExternalLinkSvg from './assets/ExternalLinkSvg.jsx';
+import LinkedInSvg from './assets/LinkedInSvg';
+import TiwtterSvg from './assets/TwitterSvg';
+import GitHubSvg from './assets/GitHubSvg';
 
 export default function MainContent() {
     const [selectedMenuItem, setSelectedMenuItem] = useState('about');
     const sections = useRef([]);
 
+    const sectionsIds = ['about', 'xp', 'project'];
 
+    const socialsIds = ['github' , 'linkedin', 'twitter' ];
 
+    const getSocialLinks = (socialId) => {
+        switch (socialId) {
+            case 'linkedin':
+                return (
+                    <a href="https://www.linkedin.com/in/florian-eeckhout" target='_blank'>{getSocialSvg(socialId)}</a>
+                )
+            case 'twitter':
+                return (
+                    <a href="https://twitter.com/_Melvac" target='_blank'>{getSocialSvg(socialId)}</a>
+                )
+            case 'github':
+                return (
+                    <a href="https://github.com/MelvacI" target='_blank'>{getSocialSvg(socialId)}</a>
+                )
+            default:
+                break;
+        }
+    }
+
+    const getSocialSvg = (socialId) => {
+        switch (socialId) {
+            case 'linkedin':
+                return <LinkedInSvg />
+            case 'twitter':
+                return <TiwtterSvg />
+            case 'github':
+                return <GitHubSvg />
+            default:
+                break;
+        }
+    }
 
 
     const paddingBlockPixels = 160; // La valeur du padding-block en pixels (5rem * 16px)
@@ -19,7 +56,7 @@ export default function MainContent() {
                     scrollPosition >= section.offsetTop &&
                     scrollPosition < section.offsetTop + section.offsetHeight
                 ) {
-                    setSelectedMenuItem(['about', 'xp', 'project', 'skills'][index]);
+                    setSelectedMenuItem(['about', 'xp', 'project'][index]);
                 }
             });
         };
@@ -43,7 +80,6 @@ export default function MainContent() {
         about: 'À propos',
         xp: 'Expériences',
         project: 'Projets',
-        skills: 'Compétences'
     }
 
     const getItemsContent = (item) => {
@@ -159,12 +195,13 @@ export default function MainContent() {
             <div className="projects">
                 <h3>Avec le collectif Metastrat</h3>
                 <div className="projects-list">
-                {
-                        projects.filter((project) => project.type === 'metastrat').map((project) => (
+                    {
+                        projects.filter((project) => project.type === 'metastrat').reverse().map((project) => (
                             <div className="project-item">
-                                <h4 className="project-title">{project.name}</h4>
+                                <h4 className="project-title"><a href={project.link} className='project-link' target='_blank'>{project.name} <ExternalLinkSvg /></a></h4>
                                 <p className="project-description">{project.description}</p>
-                                
+
+
                                 <p className="project-details">{project.details}</p>
                                 <p className="project-techs">{project.techs.map((tech) => {
                                     return <span key={project.name + tech} className="tech">{tech}</span>
@@ -178,9 +215,18 @@ export default function MainContent() {
                     {
                         projects.filter((project) => project.type === 'personnal').map((project) => (
                             <div className="project-item">
-                                <h4 className="project-title">{project.name}</h4>
+                                <h4 className="project-title">
+                                    {
+                                        project.link === null
+                                            ? <span className='project-link'>{project.name}</span>
+                                            : <a href={project.link} target='_blank'>{project.name} <ExternalLinkSvg /></a>
+
+                                    }
+
+                                </h4>
                                 <p className="project-description">{project.description}</p>
-                                
+                                <a href={project.link} className='project-link'></a>
+
                                 <p className="project-details">{project.details}</p>
                                 <p className="project-techs">{project.techs.map((tech) => {
                                     return <span key={project.name + tech} className="tech">{tech}</span>
@@ -197,25 +243,56 @@ export default function MainContent() {
 
     const projects = [
         {
-            type : 'personnal',
-            name : 'Portfolio',
-            description : 'Développement et déploiement de mon portfolio',
-            techs : ['React', 'Javascript', 'CSS', 'ViteJS'],
-            link : 'https://florian-eeckhout.fr',
-            details : <p>
+            type: 'personnal',
+            name: 'Portfolio',
+            description: 'Développement et déploiement de mon portfolio',
+            techs: ['React', 'Javascript', 'CSS', 'ViteJS'],
+            link: null,
+            details: <p>
                 Développement de mon portfolio en React avec la librairie ViteJS. Déploiement avec Netlify.
             </p>
         },
         {
-            type : 'metastrat',
-            name : 'Metastrat',
-            description : 'Développement et maintenance du site de Metastrat',
-            techs : ['React', 'Javascript', 'CSS', 'Symfony', 'Api Platform', 'MySQL', 'API'],
-            link : 'https://metastrat.com',
-            details : <p>
-                Développement et maintenance du site de Metastrat avec le framework symfony et intégration et installation de la partie front avec ReactJS.
-                Amélioration des vues dashboard du site en installant et créant des templates avec Symfony et ReactJS. Création de facture, paiements et devis avec Symfony, affichage des vues avec ReactJS et création d'endpoint avec Api Platform.
-                </p>
+            type: 'metastrat',
+            name: 'Metastrat',
+            description: 'Développement et maintenance du site de Metastrat',
+            techs: ['React', 'Javascript', 'Symfony', 'Api Platform', 'MySQL', 'API'],
+            link: 'https://metastrat.com',
+            details: <p>
+
+                Conception et entretien du site Metastrat en utilisant Symfony comme framework, avec intégration de la partie front-end via ReactJS. Enrichissement des vues du tableau de bord en créant des modèles à l'aide de Symfony et ReactJS. Mise en place de fonctionnalités de facturation, paiement, et génération de devis avec Symfony, affichage des vues grâce à ReactJS, et création d'endpoints via Api Platform.
+            </p>
+        },
+        {
+            type: 'metastrat',
+            name: 'LabonnePub',
+            description: 'Développement de la V2 de LabonnePub',
+            techs: ['React', 'Javascript', 'Symfony', 'Api Platform', 'MySQL', 'API', 'Stripe', 'CleverCloud'],
+            link: 'https://labonnepub.com',
+            details: <p>
+                Création d'une  <span className='marked-text'>régie publicitaire engagée</span> avec Symfony et ReactJS, incluant la gestion des utilisateurs, des publicités, des statistiques, et un système de rémunération. Intégration d'un tunnel de paiement <span className='marked-text'>Stripe</span> et mise en place d'une logique de diffusion des publicités basée sur un matching avec le contenu des pages web des éditeurs. Déploiement du projet avec <span className='marked-text'>CleverCloud</span>.
+            </p>
+        },
+        {
+            type: 'metastrat',
+            name: 'OpenClimat',
+            description: 'Développement et maintenance de la plateforme OpenClimat',
+            techs: ['React', 'Javascript', 'Symfony', 'Api Platform', 'MySQL', 'API'],
+            link: 'https://openclimat.com',
+            details: <p>
+                Maintenance et amélioration de la plateform Openclimat. Création de différentes template de présentation de données, création de fonctionnalités de recherche et de filtrage de données, création <span className="marked-text">d'endpoint API</span> pour l'application mobile du projet.
+                Création de différent graphique dynamique avec la librairie <span className="marked-text">ChartJS</span>.
+            </p>
+        },
+        {
+            type: 'metastrat',
+            name: 'Ti3rs',
+            description: 'Développement de la plateforme Ti3rs',
+            techs: ['React', 'Javascript', 'Symfony', 'Api Platform', 'MySQL', 'API', 'JWT', 'CleverCloud'],
+            link: 'https://ti3rs.com',
+            details: <p>
+                Création d'une plateforme web pour l'application de messagerie TI3RS, création de multiples endpoint API pour l'application mobile. Gestion des logiques de données et de la base de données. Création de fonctionnalités de messagerie et de filtrage de texte, gestion des accès avec <span className="marked-text">JWT</span>. Déploiement du projet via CleverCloud
+            </p>
         }
     ]
 
@@ -245,7 +322,7 @@ export default function MainContent() {
                 </div>
                 <div id="menu">
                     <ul>
-                        {['about', 'xp', 'project', 'skills'].map((menuItem) => (
+                        {sectionsIds.map((menuItem) => (
                             <li key={menuItem + "menu_li"} >
                                 <a className={selectedMenuItem === menuItem ? 'selected' : ''} href={`#${menuItem}`} onClick={(e) => triggerSelection(e, menuItem)}>
                                     {itemsLabel[menuItem]}
@@ -254,11 +331,19 @@ export default function MainContent() {
                         ))}
                     </ul>
                 </div>
-                <div id="socials"></div>
+                <div id="socials">
+
+                    {socialsIds.map((socialId) => (
+                        <div key={socialId + "social"} className="social">
+                            {getSocialLinks(socialId)}
+                        </div>
+                        
+                    ))}
+                </div>
             </section>
 
             <section id="resume">
-                {['about', 'xp', 'project', 'skills'].map((sectionId, index) => (
+                {sectionsIds.map((sectionId, index) => (
                     <article key={sectionId + "section"} id={sectionId} ref={(el) => (sections.current[index] = el)}>
                         <h1>{itemsLabel[sectionId]}</h1>
                         <div className="content">
