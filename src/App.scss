@@ -233,15 +233,6 @@ body {
 
                 .projects-list {
 
-                    // <div className="project-item">
-                    //         <h4 className="project-title">{project.name}</h4>
-                    //         <p className="project-description">{project.description}</p>
-                    //         <p className="project-techs">{project.techs.map((tech) => {
-                    //             return <span key={project.name + tech} className="tech">{tech}</span>
-                    //         })}</p>
-                    //         <p className="project-details">{project.details}</p>
-                    // </div>
-
                     display: flex;
                     flex-direction: column;
 
@@ -384,6 +375,7 @@ body {
                         font-size: 0.8rem;
                         font-weight: 600;
                         padding: 0.5rem 1rem;
+                        margin : 0.5rem;
 
                         &:hover {
                             background-color: #242424;

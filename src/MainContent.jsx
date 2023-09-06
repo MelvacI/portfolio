@@ -11,21 +11,21 @@ export default function MainContent() {
 
     const sectionsIds = ['about', 'xp', 'project'];
 
-    const socialsIds = ['github' , 'linkedin', 'twitter' ];
+    const socialsIds = ['github', 'linkedin', 'twitter'];
 
     const getSocialLinks = (socialId) => {
         switch (socialId) {
             case 'linkedin':
                 return (
-                    <a href="https://www.linkedin.com/in/florian-eeckhout" target='_blank'>{getSocialSvg(socialId)}</a>
+                    <a href="https://www.linkedin.com/in/florian-eeckhout" rel="noopener noreferrer" target='_blank'>{getSocialSvg(socialId)}</a>
                 )
             case 'twitter':
                 return (
-                    <a href="https://twitter.com/_Melvac" target='_blank'>{getSocialSvg(socialId)}</a>
+                    <a href="https://twitter.com/_Melvac" rel="noopener noreferrer" target='_blank'>{getSocialSvg(socialId)}</a>
                 )
             case 'github':
                 return (
-                    <a href="https://github.com/MelvacI" target='_blank'>{getSocialSvg(socialId)}</a>
+                    <a href="https://github.com/MelvacI" rel="noopener noreferrer" target='_blank'>{getSocialSvg(socialId)}</a>
                 )
             default:
                 break;
@@ -105,9 +105,9 @@ export default function MainContent() {
         return (
 
             <div className="intro">
-                <p className="greeting">Salut ! Moi c'est <span className="marked-text" >Florian</span>, j'ai <span className="age">{getMyAge()}</span> ans, depuis toujours je suis passionné d'informatique.</p>
+                <p className="greeting">Salut ! Moi c'est <span className="marked-text">Florian</span>, j'ai <span className="age">{getMyAge()}</span> ans, depuis toujours je suis passionné d'informatique.</p>
                 <p>Après plusieurs années à enseigner ma seconde passion qu'est l'équitation, j'ai décidé de me former au développement en 2022 afin de vivre pleinement ces deux passions.</p>
-                <p>J'ai rapidement eu l'occasion de rejoindre un <span className="marked-text" >collectif de freelance</span> qui m'a fait confiance suite à mon stage de fin d'étude. J'ai pu alors travailler sur des projets engagés socialement et écologiquement.</p>
+                <p>J'ai rapidement eu l'occasion de rejoindre un <span className="marked-text">collectif de freelance</span> qui m'a fait confiance suite à mon stage de fin d'étude. J'ai pu alors travailler sur des projets engagés socialement et écologiquement.</p>
                 <p>Voici un bref résumé des technologies sur lesquelles j'ai pu travailler.</p>
 
                 <ul className="tech-list">
@@ -117,7 +117,6 @@ export default function MainContent() {
                     <li>Symfony</li>
                     <li>Api Platform</li>
                     <li>MySQL</li>
-
                 </ul>
             </div>
         )
@@ -129,7 +128,7 @@ export default function MainContent() {
             company: 'Freelance',
             date: 'Octobre 2022 - Aujourd\'hui',
             description: 'Développement d\'applications web en freelance',
-            details: <p>Développement d'applications avec Framework PHP Symfony et ReactJS, au sein du collectif de Freelance "MetaStrat" j'ai pu travailler sur des projets pour des clients du collectif tels que <a href="https://www.openclimat.com" className="marked-text" target='_blank'>OpenClimat</a>, <span className="marked-text" >Ti3rs</span> et des projets interne comme <a className="marked-text" href="https://labonnepub.com" target='_blank' >LabonnePub</a></p>,
+            details: <p>Développement d'applications avec Framework PHP Symfony et ReactJS, au sein du collectif de Freelance "MetaStrat" j'ai pu travailler sur des projets pour des clients du collectif tels que <a href="https://www.openclimat.com" rel="noopener noreferrer" className="marked-text" target='_blank'>OpenClimat</a>, <span className="marked-text" >Ti3rs</span> et des projets interne comme <a className="marked-text" rel="noopener noreferrer" href="https://labonnepub.com" target='_blank' >LabonnePub</a></p>,
             techs: ['Javascript', 'React', 'PHP', 'Symfony', 'Api Platform', 'MySQL']
         },
         {
@@ -138,7 +137,7 @@ export default function MainContent() {
             date: 'Juillet 2022 - Octobre 2022',
             description: 'Développement d\'applications web',
             details: <p>
-                Développement et maintenance du site <a href="https://metastrat.com" className="marked-text" target="_blank">Metastrat</a> avec le framework symfony et intégration et installation de la partie front avec ReactJS, début du développement de la V2 de <a href="https://labonnepub.com" className="marked-text" target="_blank">LabonnePub</a> avec ReactJS et Symfony.
+                Développement et maintenance du site <a href="https://metastrat.com" rel="noopener noreferrer" className="marked-text" target="_blank">Metastrat</a> avec le framework symfony et intégration et installation de la partie front avec ReactJS, début du développement de la V2 de <a  rel="noopener noreferrer" href="https://labonnepub.com" className="marked-text" target="_blank">LabonnePub</a> avec ReactJS et Symfony.
             </p>,
             techs: ['Javascript', 'React', 'PHP', 'Symfony', 'MySQL']
         },
@@ -177,11 +176,11 @@ export default function MainContent() {
                                 <p className="xp-date">{xpItem.date}</p>
                             </div>
                             <h4 className="xp-company">{xpItem.company}</h4>
-                            <p className="xp-description">{xpItem.description}</p>
-                            <p className="xp-details">{xpItem.details}</p>
-                            <p className="xp-techs">{xpItem.techs.map((tech) => {
+                            <div className="xp-description">{xpItem.description}</div>
+                            <div className="xp-details">{xpItem.details}</div>
+                            <div className="xp-techs">{xpItem.techs.map((tech) => {
                                 return <span key={xpItem.title + tech} className="tech">{tech}</span>
-                            })}</p>
+                            })}</div>
                         </div>
                     ))
                 }
@@ -197,15 +196,22 @@ export default function MainContent() {
                 <div className="projects-list">
                     {
                         projects.filter((project) => project.type === 'metastrat').reverse().map((project) => (
-                            <div className="project-item">
-                                <h4 className="project-title"><a href={project.link} className='project-link' target='_blank'>{project.name} <ExternalLinkSvg /></a></h4>
-                                <p className="project-description">{project.description}</p>
+                            <div key={project.name + "project-item"} className="project-item">
+                                <h4 className="project-title">
+                                    {
+                                        project.link === null
+                                            ? <span className='project-link'>{project.name}</span>
+                                            : <a rel="noopener noreferrer" href={project.link} className='project-link' target='_blank'>{project.name} <ExternalLinkSvg /></a>
+
+                                    }
+                                </h4>
+                                <div className="project-description">{project.description}</div>
 
 
-                                <p className="project-details">{project.details}</p>
-                                <p className="project-techs">{project.techs.map((tech) => {
+                                <div className="project-details">{project.details}</div>
+                                <div className="project-techs">{project.techs.map((tech) => {
                                     return <span key={project.name + tech} className="tech">{tech}</span>
-                                })}</p>
+                                })}</div>
                             </div>
                         ))
                     }
@@ -214,23 +220,23 @@ export default function MainContent() {
                 <div className="projects-list">
                     {
                         projects.filter((project) => project.type === 'personnal').map((project) => (
-                            <div className="project-item">
+                            <div key={project.name + "project-item"} className="project-item">
                                 <h4 className="project-title">
                                     {
                                         project.link === null
                                             ? <span className='project-link'>{project.name}</span>
-                                            : <a href={project.link} target='_blank'>{project.name} <ExternalLinkSvg /></a>
+                                            : <a rel="noopener noreferrer" href={project.link} className='project-link' target='_blank'>{project.name} <ExternalLinkSvg /></a>
 
                                     }
 
                                 </h4>
-                                <p className="project-description">{project.description}</p>
-                                <a href={project.link} className='project-link'></a>
+                                <div className="project-description">{project.description}</div>
 
-                                <p className="project-details">{project.details}</p>
-                                <p className="project-techs">{project.techs.map((tech) => {
+
+                                <div className="project-details">{project.details}</div>
+                                <div className="project-techs">{project.techs.map((tech) => {
                                     return <span key={project.name + tech} className="tech">{tech}</span>
-                                })}</p>
+                                })}</div>
                             </div>
                         ))
                     }
@@ -324,7 +330,7 @@ export default function MainContent() {
                     <ul>
                         {sectionsIds.map((menuItem) => (
                             <li key={menuItem + "menu_li"} >
-                                <a className={selectedMenuItem === menuItem ? 'selected' : ''} href={`#${menuItem}`} onClick={(e) => triggerSelection(e, menuItem)}>
+                                <a rel="noopener noreferrer" className={selectedMenuItem === menuItem ? 'selected' : ''} href={`#${menuItem}`} onClick={(e) => triggerSelection(e, menuItem)}>
                                     {itemsLabel[menuItem]}
                                 </a>
                             </li>
@@ -337,7 +343,7 @@ export default function MainContent() {
                         <div key={socialId + "social"} className="social">
                             {getSocialLinks(socialId)}
                         </div>
-                        
+
                     ))}
                 </div>
             </section>
