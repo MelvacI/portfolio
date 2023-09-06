@@ -351,7 +351,10 @@ export default function MainContent() {
             <section id="resume">
                 {sectionsIds.map((sectionId, index) => (
                     <article key={sectionId + "section"} id={sectionId} ref={(el) => (sections.current[index] = el)}>
-                        <h1>{itemsLabel[sectionId]}</h1>
+                        {
+                            sectionId != 'about' &&<h1>{itemsLabel[sectionId]}</h1>
+                        }
+                        
                         <div className="content">
                             {getItemsContent(sectionId)}
                         </div>

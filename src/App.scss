@@ -86,7 +86,7 @@ body {
     }
 
     min-height: 100vh;
-    padding: 0rem 18rem;
+    padding: 7rem 18rem;
     @media screen and (max-width: 1440px) {
         padding: 0rem 10rem;
         
@@ -201,8 +201,10 @@ body {
             }
 
             article {
-                min-height: 90vh;
-                padding-block: 5rem;
+                padding-block: 3rem;
+                &#about{
+                    padding-block: 2.5rem;
+                }
             }
 
             ul.tech-list {
