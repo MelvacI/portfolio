@@ -272,7 +272,8 @@ body {
                                 color: #50dfdb;
                                 text-decoration: none;
                                 transition: all 0.3s ease-in-out;
-
+                                width: fit-content;
+                            
                                 &:hover {
                                     color: #fff;
                                 }
