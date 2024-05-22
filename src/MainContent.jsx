@@ -128,7 +128,7 @@ export default function MainContent() {
             company: 'Freelance',
             date: 'Octobre 2022 - Aujourd\'hui',
             description: 'Développement d\'applications web en freelance',
-            details: <p>Développement d'applications avec Framework PHP Symfony et ReactJS, au sein du collectif de Freelance "MetaStrat" j'ai pu travailler sur des projets pour des clients du collectif tels que <a href="https://www.openclimat.com" rel="noopener noreferrer" className="marked-text" target='_blank'>OpenClimat</a>, <span className="marked-text" >Ti3rs</span> et des projets interne comme <a className="marked-text" rel="noopener noreferrer" href="https://labonnepub.com" target='_blank' >LabonnePub</a></p>,
+            details: <p>Développement d'applications avec Framework PHP Symfony et ReactJS, au sein du collectif de Freelance "MetaStrat" j'ai pu travailler sur des projets pour des clients du collectif tels que <a href="https://www.openclimat.com" rel="noopener noreferrer" className="marked-text" target='_blank'>OpenClimat</a>, <a href="https://www.ti3rs.fr" rel="noopener noreferrer" className="marked-text" target='_blank'>Ti3rs</a> et des projets interne comme <a className="marked-text" rel="noopener noreferrer" href="https://labonnepub.com" target='_blank' >LabonnePub</a>, <a className="marked-text" rel="noopener noreferrer" href="https://www.leboutonsesame.com/fr/" target='_blank' >Le Bouton Sésame</a>  ainsi que la maintenance et le developpement de nouvelles features sur <a className="marked-text" rel="noopener noreferrer" href="https://www.metastrat.com/fr/" target='_blank' >Métastrat</a></p>,
             techs: ['Javascript', 'React', 'PHP', 'Symfony', 'Api Platform', 'MySQL']
         },
         {
@@ -137,7 +137,7 @@ export default function MainContent() {
             date: 'Juillet 2022 - Octobre 2022',
             description: 'Développement d\'applications web',
             details: <p>
-                Développement et maintenance du site <a href="https://metastrat.com" rel="noopener noreferrer" className="marked-text" target="_blank">Metastrat</a> avec le framework symfony et intégration et installation de la partie front avec ReactJS, début du développement de la V2 de <a  rel="noopener noreferrer" href="https://labonnepub.com" className="marked-text" target="_blank">LabonnePub</a> avec ReactJS et Symfony.
+                Développement et maintenance du site <a href="https://metastrat.com" rel="noopener noreferrer" className="marked-text" target="_blank">Metastrat</a> avec le framework symfony et intégration et installation de la partie front avec ReactJS, début du développement de la V2 de <a rel="noopener noreferrer" href="https://labonnepub.com" className="marked-text" target="_blank">LabonnePub</a> avec ReactJS et Symfony.
             </p>,
             techs: ['Javascript', 'React', 'PHP', 'Symfony', 'MySQL']
         },
@@ -192,30 +192,6 @@ export default function MainContent() {
     const getProjectsContent = () => {
         return (
             <div className="projects">
-                <h3>Avec le collectif Metastrat</h3>
-                <div className="projects-list">
-                    {
-                        projects.filter((project) => project.type === 'metastrat').reverse().map((project) => (
-                            <div key={project.name + "project-item"} className="project-item">
-                                <h4 className="project-title">
-                                    {
-                                        project.link === null
-                                            ? <span className='project-link'>{project.name}</span>
-                                            : <a rel="noopener noreferrer" href={project.link} className='project-link' target='_blank'>{project.name} <ExternalLinkSvg /></a>
-
-                                    }
-                                </h4>
-                                <div className="project-description">{project.description}</div>
-
-
-                                <div className="project-details">{project.details}</div>
-                                <div className="project-techs">{project.techs.map((tech) => {
-                                    return <span key={project.name + tech} className="tech">{tech}</span>
-                                })}</div>
-                            </div>
-                        ))
-                    }
-                </div>
                 <h3>Sur mon temps libre</h3>
                 <div className="projects-list">
                     {
@@ -242,6 +218,31 @@ export default function MainContent() {
                     }
 
                 </div>
+                <h3>Avec le collectif Metastrat</h3>
+                <div className="projects-list">
+                    {
+                        projects.filter((project) => project.type === 'metastrat').reverse().map((project) => (
+                            <div key={project.name + "project-item"} className="project-item">
+                                <h4 className="project-title">
+                                    {
+                                        project.link === null
+                                            ? <span className='project-link'>{project.name}</span>
+                                            : <a rel="noopener noreferrer" href={project.link} className='project-link' target='_blank'>{project.name} <ExternalLinkSvg /></a>
+
+                                    }
+                                </h4>
+                                <div className="project-description">{project.description}</div>
+
+
+                                <div className="project-details">{project.details}</div>
+                                <div className="project-techs">{project.techs.map((tech) => {
+                                    return <span key={project.name + tech} className="tech">{tech}</span>
+                                })}</div>
+                            </div>
+                        ))
+                    }
+                </div>
+
 
             </div>
         )
@@ -295,11 +296,31 @@ export default function MainContent() {
             name: 'Ti3rs',
             description: 'Développement de la plateforme Ti3rs',
             techs: ['React', 'Javascript', 'Symfony', 'Api Platform', 'MySQL', 'API', 'JWT', 'CleverCloud'],
-            link: 'https://ti3rs.com',
+            link: 'https://ti3rs.fr',
             details: <p>
                 Création d'une plateforme web pour l'application de messagerie TI3RS, création de multiples endpoint API pour l'application mobile. Gestion des logiques de données et de la base de données. Création de fonctionnalités de messagerie et de filtrage de texte, gestion des accès avec <span className="marked-text">JWT</span>. Déploiement du projet via CleverCloud
             </p>
-        }
+        },
+        {
+            type: 'metastrat',
+            name: 'LeBoutonSesame',
+            description: 'Développement de la plateforme LeBoutonSesame',
+            techs: ['React', 'Symfony', 'Api Platform', 'Stripe', 'MySQL', 'API', 'JWT', 'CleverCloud'],
+            link: 'https://leboutonsesame.com',
+            details: <p>
+                Création d'une solution d'abonnement pour les médias indépendant, permettant de regrouper l'accès à plusieurs medias premium dans un seul abonnement, et de rémunérer les médias en fonction du temps passé sur leur contenu. Développement de la partie médias et de la partie utilisateur, gestion des abonnements et des paiements avec <span className="marked-text">Stripe</span>, gestion des accès avec <span className="marked-text">JWT</span>. Déploiement du projet via CleverCloud.
+            </p>
+        },
+        {
+            type: 'personnal',
+            name: 'Logiciel traitement PDF',
+            description: 'Développement d\'un logiciel de traitement de PDF',
+            techs: ['Python', 'Google API', 'PDF'],
+            link: null,
+            details: <p>
+                Développement d'un logiciel de traitement de PDF, permettant de convertir un lourd fichier PDF en plusieurs fichiers PDF plus légers, chaque fichier correspondant à un client du document original. Envoie de chaque fichier dans le dossier client correspondant sur Google Drive.
+            </p>
+        },
     ]
 
 
@@ -352,9 +373,9 @@ export default function MainContent() {
                 {sectionsIds.map((sectionId, index) => (
                     <article key={sectionId + "section"} id={sectionId} ref={(el) => (sections.current[index] = el)}>
                         {
-                            sectionId != 'about' &&<h1>{itemsLabel[sectionId]}</h1>
+                            sectionId != 'about' && <h1>{itemsLabel[sectionId]}</h1>
                         }
-                        
+
                         <div className="content">
                             {getItemsContent(sectionId)}
                         </div>
