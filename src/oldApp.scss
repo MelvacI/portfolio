@@ -2,15 +2,17 @@
 @import "glitchText.scss";
 
 
+
 html {
     box-sizing: border-box;
     scroll-behavior: smooth;
-    background-color: var(--bg-color);
+    background-color: #242424;
 }
 
 html,
 body {
     min-height: 100vh;
+    /* La hauteur minimale est de 100vh */
     display: flex;
     margin: 0;
     padding: 0;
@@ -21,8 +23,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--bg-color);
-    color: var(--text-color);
 }
 
 #app,
@@ -31,7 +31,16 @@ body {
     padding: 0;
     width: 100%;
     min-height: 100vh;
+    /* La hauteur minimale est de 100vh */
 }
+
+// styling page scroll bar
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+
 
 #loader-container,
 #main-content {
@@ -53,28 +62,6 @@ body {
 
 #main-content {
 
-    #theme-toggle{
-        position: fixed;
-        top: 1rem;
-        right: 1rem;
-        z-index: 9999;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem;
-        border-radius: 1rem;
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        transition: all 0.3s ease-in-out;
-
-        &:hover {
-            background-color: var(--highlight-color);
-            color: var(--bg-color);
-        }
-    }
-
     .cursor-follower {
         @media screen and (max-width: 768px) {
             display: none;
@@ -82,12 +69,16 @@ body {
 
         position: fixed;
         width: 10px;
+        /* Ajustez la largeur et la hauteur selon vos besoins */
         height: 10px;
-        -webkit-box-shadow: 0px 0px 200px 200px var(--cursor-follower-shadow);
-        box-shadow: 0px 0px 300px 200px var(--cursor-follower-shadow);
-        background-color: var(--cursor-follower-bg);
+        /* Ajustez la largeur et la hauteur selon vos besoins */
+
+        -webkit-box-shadow: 0px 0px 200px 200px rgba(119, 119, 119, 0.2);
+        box-shadow: 0px 0px 300px 200px rgba(119, 119, 119, 0.2);
+        background-color: rgba(119, 119, 119, 0.15);
         pointer-events: none;
         border-radius: 50%;
+        /* Rend l'élément entier (y compris la shadow) rond */
         transform: translate(-50%, -50%);
         z-index: 9999;
     }
@@ -98,7 +89,8 @@ body {
     }
 
     .marked-text {
-        color: var(--highlight-color);
+        color: #50dfdb;
+
     }
 
     min-height: 100vh;
@@ -106,10 +98,14 @@ body {
 
     @media screen and (max-width: 1440px) {
         padding: 0rem 10rem;
+
+
+
     }
 
     @media screen and (max-width: 1024px) {
         padding: 0rem 2rem;
+
     }
 
     section {
@@ -123,6 +119,8 @@ body {
 
         &#description {
             text-align: start;
+
+            // sticky on desktop
             position: sticky;
             top: 7rem;
             align-self: flex-start;
@@ -130,13 +128,13 @@ body {
 
             @media screen and (max-width : 768px) {
                 position: relative;
-                top: 0;
+                top : 0;
             }
 
             h1 {
                 font-size: 3rem;
                 font-weight: 600;
-                color: var(--highlight-color);
+                color: #50dfdb;
                 margin-block: 1rem;
             }
 
@@ -148,6 +146,7 @@ body {
                 ul,
                 li,
                 a {
+
                     margin: 0;
                     padding: 0;
                 }
@@ -156,8 +155,11 @@ body {
                     list-style: none;
                     margin: 1rem 0;
 
+
+
                     a {
-                        color: var(--highlight-color);
+
+                        color: #50dfdb;
                         text-decoration: none;
                         font-size: 1.5rem;
                         font-weight: 600;
@@ -165,12 +167,15 @@ body {
 
                         &:hover,
                         &.selected {
+
                             padding: 0 1rem;
                             transition: all 0.3s ease-in-out;
-                            color: var(--link-hover-color);
+                            color: #fff;
+
                         }
                     }
                 }
+
             }
 
             #socials {
@@ -179,7 +184,7 @@ body {
                 margin: 2rem 0;
 
                 a {
-                    color: var(--highlight-color);
+                    color: #50dfdb;
                     text-decoration: none;
                     height: 40px;
                     width: 40px;
@@ -189,9 +194,10 @@ body {
                     align-items: center;
 
                     &:hover {
-                        color: var(--social-hover-color);
-                        background-color: var(--social-hover-bg);
+                        color: #242424;
+                        background-color: #50dfdb;
                     }
+
                 }
             }
         }
@@ -202,7 +208,7 @@ body {
             h1 {
                 font-size: 3rem;
                 font-weight: 600;
-                color: var(--highlight-color);
+                color: #50dfdb;
                 margin-block: 1rem;
             }
 
@@ -214,6 +220,7 @@ body {
                 }
             }
 
+            // last child artcile min height 100vh
             article:last-child {
                 min-height: calc(100vh - 21rem);
             }
@@ -232,27 +239,30 @@ body {
                     margin: 1rem;
                     padding: 0.5rem 1rem;
                     border-radius: 0.5rem;
-                    background-color: var(--tech-bg-color);
-                    color: var(--tech-text-color);
+                    background-color: #50dfdb;
+                    color: #242424;
                     font-size: 1rem;
                     font-weight: 600;
                     transition: all 0.3s ease-in-out;
 
                     &:hover {
-                        background-color: var(--tech-hover-bg);
-                        color: var(--tech-hover-color);
+                        background-color: #242424;
+                        color: #50dfdb;
                     }
                 }
             }
 
             a.marked-text {
-                color: var(--highlight-color);
+                color: #50dfdb;
                 font-weight: bold;
                 cursor: pointer;
             }
 
             .projects {
+
+
                 .projects-list {
+
                     display: flex;
                     flex-direction: column;
 
@@ -263,28 +273,33 @@ body {
 
                         &:hover {
                             border-radius: 0.5rem;
-                            background: var(--project-hover-bg);
+                            background: #333333;
                         }
+
+
 
                         .project-title {
                             font-size: 1.5rem;
                             font-weight: 600;
                             margin-top: 1rem;
 
+
                             .project-link {
                                 display: flex;
                                 align-items: center;
                                 gap: 0.5rem;
-                                color: var(--highlight-color);
+                                color: #50dfdb;
                                 text-decoration: none;
                                 transition: all 0.3s ease-in-out;
                                 width: fit-content;
 
                                 &:hover {
-                                    color: var(--link-hover-color);
+                                    color: #fff;
                                 }
                             }
                         }
+
+
 
                         .project-description {
                             font-size: 0.8rem;
@@ -302,26 +317,26 @@ body {
                             display: flex;
                             flex-wrap: wrap;
                             align-items: center;
-                            cursor: pointer;
 
                             .tech {
                                 border-radius: 0.5rem;
-                                background-color: var(--tech-bg-color);
-                                color: var(--tech-text-color);
+                                background-color: #50dfdb;
+                                color: #242424;
                                 font-size: 0.8rem;
                                 font-weight: 600;
                                 padding: 0.5rem 1rem;
                                 margin: 0.5rem;
 
                                 &:hover {
-                                    background-color: var(--tech-hover-bg);
-                                    color: var(--tech-hover-color);
+                                    background-color: #242424;
+                                    color: #50dfdb;
                                 }
                             }
                         }
                     }
                 }
             }
+
 
             .xp-item {
                 margin: 3rem 0;
@@ -330,7 +345,7 @@ body {
 
                 &:hover {
                     border-radius: 0.5rem;
-                    background: var(--project-hover-bg);
+                    background: #333333;
                 }
 
                 .xp-header {
@@ -377,19 +392,25 @@ body {
 
                     .tech {
                         border-radius: 0.5rem;
-                        background-color: var(--tech-bg-color);
-                        color: var(--tech-text-color);
+                        background-color: #50dfdb;
+                        color: #242424;
                         font-size: 0.8rem;
                         font-weight: 600;
                         padding: 0.5rem 1rem;
                         margin: 0.5rem;
-                        cursor: pointer;
+
                         &:hover {
-                            background-color: var(--tech-hover-bg);
-                            color: var(--tech-hover-color);
+                            background-color: #242424;
+                            color: #50dfdb;
                         }
                     }
                 }
+
+
+
+
+
+
             }
 
         }
@@ -410,7 +431,7 @@ body {
     height: 2px;
     bottom: 0;
     left: 0;
-    background: var(--highlight-color);
+    background: #50dfdb;
     transform-origin: left;
     animation: animate 2s linear;
 }
@@ -431,7 +452,7 @@ body {
 
 /* Ajoutez ces styles à votre fichier CSS ou à votre feuille de style */
 .cursor {
-    color: var(--text-color);
+    color: white;
     /* Couleur blanche du curseur */
     animation: blink 0.7s infinite;
     /* Animation de clignotement */

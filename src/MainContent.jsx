@@ -4,14 +4,30 @@ import ExternalLinkSvg from './assets/ExternalLinkSvg.jsx';
 import LinkedInSvg from './assets/LinkedInSvg';
 import TiwtterSvg from './assets/TwitterSvg';
 import GitHubSvg from './assets/GitHubSvg';
+import MoonSvg from './assets/MoonSvg.jsx';
+import SunSvg from './assets/SunSvg.jsx';
 
 export default function MainContent() {
     const [selectedMenuItem, setSelectedMenuItem] = useState('about');
     const sections = useRef([]);
 
+    const isMobile = window.innerWidth < 768;
+
+
     const sectionsIds = ['about', 'xp', 'project'];
 
     const socialsIds = ['github', 'linkedin', 'twitter'];
+
+    const [currentTheme, setCurrentTheme] = useState(localStorage.getItem('theme') || 'dark');
+
+    const toggleTheme = () => {
+        // Check if the theme is currently light
+        const isLightMode = document.documentElement.classList.toggle('light-mode');
+        // Save the theme in localStorage
+        localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+        // Update the current theme
+        setCurrentTheme(isLightMode ? 'light' : 'dark');
+      }
 
     const getSocialLinks = (socialId) => {
         switch (socialId) {
@@ -70,16 +86,21 @@ export default function MainContent() {
     }, []);
 
     const triggerSelection = (e, menuItem) => {
-        e.preventDefault();
+    e.preventDefault();
+    if (menuItem === 'about') {
+        window.scrollTo(0, 0);
+    } else {
         const section = document.querySelector(`#${menuItem}`);
         window.scrollTo(0, section.offsetTop);
-    };
+    }
+};
 
 
     const itemsLabel = {
-        about: 'À propos',
+        about: 'A propos de moi',
         xp: 'Expériences',
         project: 'Projets',
+        contact: 'Contact'
     }
 
     const getItemsContent = (item) => {
@@ -90,8 +111,8 @@ export default function MainContent() {
                 return getXPContent();
             case 'project':
                 return getProjectsContent();
-            case 'skills':
-                // do something
+            case 'contact':
+                return getContactContent();
                 break;
             default:
                 // do something
@@ -129,7 +150,7 @@ export default function MainContent() {
             date: 'Octobre 2022 - Aujourd\'hui',
             description: 'Développement d\'applications web en freelance',
             details: <p>Développement d'applications avec Framework PHP Symfony et ReactJS, au sein du collectif de Freelance "MetaStrat" j'ai pu travailler sur des projets pour des clients du collectif tels que <a href="https://www.openclimat.com" rel="noopener noreferrer" className="marked-text" target='_blank'>OpenClimat</a>, <a href="https://www.ti3rs.fr" rel="noopener noreferrer" className="marked-text" target='_blank'>Ti3rs</a> et des projets interne comme <a className="marked-text" rel="noopener noreferrer" href="https://labonnepub.com" target='_blank' >LabonnePub</a>, <a className="marked-text" rel="noopener noreferrer" href="https://www.leboutonsesame.com/fr/" target='_blank' >Le Bouton Sésame</a>  ainsi que la maintenance et le developpement de nouvelles features sur <a className="marked-text" rel="noopener noreferrer" href="https://www.metastrat.com/fr/" target='_blank' >Métastrat</a></p>,
-            techs: ['Javascript', 'React', 'PHP', 'Symfony', 'Api Platform', 'MySQL']
+            techs: ['Javascript', 'React', 'PHP', 'Symfony', 'Api Platform', 'MySQL', 'Wordpress', 'Stripe', 'CleverCloud']
         },
         {
             title: 'Stagiaire Développeur Web',
@@ -222,6 +243,7 @@ export default function MainContent() {
                 <div className="projects-list">
                     {
                         projects.filter((project) => project.type === 'metastrat').reverse().map((project) => (
+
                             <div key={project.name + "project-item"} className="project-item">
                                 <h4 className="project-title">
                                     {
@@ -229,8 +251,60 @@ export default function MainContent() {
                                             ? <span className='project-link'>{project.name}</span>
                                             : <a rel="noopener noreferrer" href={project.link} className='project-link' target='_blank'>{project.name} <ExternalLinkSvg /></a>
 
-                                    }
+                                    } 
+                                    {(project.link && project.iframe  && !isMobile) && (
+                                        <div style={{
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            width: '100%',
+                                            height: '0',
+                                            paddingBottom: '56.25%',
+                                            borderRadius: '10px',
+                                            marginTop: '10px',
+                                            backgroundColor: 'white',
+                                            overflow: 'hidden',
+                                            boxShadow: '0 0 1rem 0 rgba(0, 0, 0, .2)',
+                                            position: 'relative'
+                                        }}>
+                                            <iframe
+                                                src={project.link}
+                                                title={project.name}
+                                                style={{
+                                                    position: 'absolute',
+                                                    top: '0',
+                                                    left: '0',
+                                                    width: '100%',
+                                                    height: '100%',
+                                                    border: '0',
+                                                    pointerEvents: 'none'
+                                                }}
+                                            >
+                                                Sorry, your browser does not support iframes.
+                                            </iframe>
+                                            <div
+                                                onClick={() => window.open(project.link, '_blank')}
+                                                style={{
+                                                    position: 'absolute',
+                                                    top: '0',
+                                                    left: '0',
+                                                    width: '100%',
+                                                    height: '100%',
+                                                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                                                    color: 'white',
+                                                    display: 'flex',
+                                                    justifyContent: 'center',
+                                                    alignItems: 'center',
+                                                    cursor: 'pointer',
+                                                    textAlign: 'center'
+                                                }}
+                                            >
+                                                Cliquez pour ouvrir le projet&nbsp;<ExternalLinkSvg />
+                                            </div>
+                                        </div>
+                                    )}
                                 </h4>
+
                                 <div className="project-description">{project.description}</div>
 
 
@@ -257,7 +331,8 @@ export default function MainContent() {
             link: null,
             details: <p>
                 Développement de mon portfolio en React avec la librairie ViteJS. Déploiement avec Netlify.
-            </p>
+            </p>,
+            iframe : false
         },
         {
             type: 'metastrat',
@@ -268,7 +343,8 @@ export default function MainContent() {
             details: <p>
 
                 Conception et entretien du site Metastrat en utilisant Symfony comme framework, avec intégration de la partie front-end via ReactJS. Enrichissement des vues du tableau de bord en créant des modèles à l'aide de Symfony et ReactJS. Mise en place de fonctionnalités de facturation, paiement, et génération de devis avec Symfony, affichage des vues grâce à ReactJS, et création d'endpoints via Api Platform.
-            </p>
+            </p>,
+            iframe : true
         },
         {
             type: 'metastrat',
@@ -278,7 +354,8 @@ export default function MainContent() {
             link: 'https://labonnepub.com',
             details: <p>
                 Création d'une  <span className='marked-text'>régie publicitaire engagée</span> avec Symfony et ReactJS, incluant la gestion des utilisateurs, des publicités, des statistiques, et un système de rémunération. Intégration d'un tunnel de paiement <span className='marked-text'>Stripe</span> et mise en place d'une logique de diffusion des publicités basée sur un matching avec le contenu des pages web des éditeurs. Déploiement du projet avec <span className='marked-text'>CleverCloud</span>.
-            </p>
+            </p>,
+            iframe : true
         },
         {
             type: 'metastrat',
@@ -289,7 +366,8 @@ export default function MainContent() {
             details: <p>
                 Maintenance et amélioration de la plateform Openclimat. Création de différentes template de présentation de données, création de fonctionnalités de recherche et de filtrage de données, création <span className="marked-text">d'endpoint API</span> pour l'application mobile du projet.
                 Création de différent graphique dynamique avec la librairie <span className="marked-text">ChartJS</span>.
-            </p>
+            </p>,
+            iframe : true
         },
         {
             type: 'metastrat',
@@ -299,7 +377,8 @@ export default function MainContent() {
             link: 'https://ti3rs.fr',
             details: <p>
                 Création d'une plateforme web pour l'application de messagerie TI3RS, création de multiples endpoint API pour l'application mobile. Gestion des logiques de données et de la base de données. Création de fonctionnalités de messagerie et de filtrage de texte, gestion des accès avec <span className="marked-text">JWT</span>. Déploiement du projet via CleverCloud
-            </p>
+            </p>,
+            iframe : false
         },
         {
             type: 'metastrat',
@@ -309,7 +388,8 @@ export default function MainContent() {
             link: 'https://leboutonsesame.com',
             details: <p>
                 Création d'une solution d'abonnement pour les médias indépendant, permettant de regrouper l'accès à plusieurs medias premium dans un seul abonnement, et de rémunérer les médias en fonction du temps passé sur leur contenu. Développement de la partie médias et de la partie utilisateur, gestion des abonnements et des paiements avec <span className="marked-text">Stripe</span>, gestion des accès avec <span className="marked-text">JWT</span>. Déploiement du projet via CleverCloud.
-            </p>
+            </p>,
+            iframe : true
         },
         {
             type: 'personnal',
@@ -319,9 +399,35 @@ export default function MainContent() {
             link: null,
             details: <p>
                 Développement d'un logiciel de traitement de PDF, permettant de convertir un lourd fichier PDF en plusieurs fichiers PDF plus légers, chaque fichier correspondant à un client du document original. Envoie de chaque fichier dans le dossier client correspondant sur Google Drive.
-            </p>
+            </p>,
+            iframe : true
         },
     ]
+
+    const getContactContent = () => {
+
+        // formulaire de contact avec envoie de mail
+        return (
+            <div className="contact">
+                <h3>Me contacter</h3>
+                <form action="" method="POST">
+                    <div className="form-group">
+                        <label htmlFor="name">Nom</label>
+                        <input type="text" id="name" name="name" required />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="email">Email</label>
+                        <input type="email" id="email" name="email" required />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit">Envoyer</button>
+                </form>
+            </div>
+        )
+    }
 
 
     const getMyAge = () => {
@@ -340,6 +446,11 @@ export default function MainContent() {
 
     return (
         <div id="main-content" className="wrap">
+            <div id="theme-toggle" onClick={toggleTheme}>
+                {currentTheme === 'dark' ? <SunSvg /> : <MoonSvg />}
+            
+            </div>
+
             <CursorFollower />
             <section id="description">
                 <div id="presentation">
@@ -372,9 +483,9 @@ export default function MainContent() {
             <section id="resume">
                 {sectionsIds.map((sectionId, index) => (
                     <article key={sectionId + "section"} id={sectionId} ref={(el) => (sections.current[index] = el)}>
-                        {
-                            sectionId != 'about' && <h1>{itemsLabel[sectionId]}</h1>
-                        }
+                        
+                             <h1>{itemsLabel[sectionId]}</h1>
+                        
 
                         <div className="content">
                             {getItemsContent(sectionId)}

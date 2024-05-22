@@ -1,4 +1,40 @@
 :root {
+  --bg-color: #242424;
+  --text-color: rgba(255, 255, 255, 0.87);
+  --highlight-color: #50dfdb;
+  --cursor-color: white;
+  --cursor-follower-shadow: rgba(119, 119, 119, 0.2);
+  --cursor-follower-bg: rgba(119, 119, 119, 0.15);
+  --link-hover-color: #fff;
+  --social-hover-bg: #50dfdb;
+  --social-hover-color: #242424;
+  --project-hover-bg: #333333;
+  --tech-text-color: #242424;
+  --tech-bg-color: #50dfdb;
+  --tech-hover-color: #50dfdb;
+  --tech-hover-bg: #242424;
+}
+
+.light-mode {
+  --bg-color: #f0f0f0;
+  --text-color: #242424;
+  --highlight-color: #50dfdb;
+  --cursor-color: black;
+  --cursor-follower-shadow: rgba(50, 50, 50, 0.2);
+  --cursor-follower-bg: rgba(50, 50, 50, 0.15);
+  --link-hover-color: #50dfdb;
+  --social-hover-bg: #242424;
+  --social-hover-color: #50dfdb;
+  --project-hover-bg: #cccccc;
+  --tech-text-color: #50dfdb;
+  --tech-bg-color: #242424;
+  --tech-hover-color: #242424;
+  --tech-hover-bg: #50dfdb;
+}
+
+
+
+:root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
